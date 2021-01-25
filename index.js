@@ -65,13 +65,13 @@ const uang = JSON.parse(fs.readFileSync('./database/json/uang.json'))
 const _registered = JSON.parse(fs.readFileSync('./database/json/registered.json'))
 
 /*let {
-    botName,
-    ownerName,
-    BarBarKey,
-} = ('./settings/setting')*/
+    UwiPspaaBot
+    Avvcringe.tolol ( Follow ig ), nama gw uzanncu
+    Barbarkey,
+ = ('./settings/setting')*/
 
 // Load Menu File
-const { help } = require('./database/menu/help')
+const { help } = require('./src/help')
 const { logomaker } = require('./database/menu/logomaker')
 const { adult } = require('./database/menu/adult')
 const { downloader } = require('./database/menu/downloader')
@@ -99,14 +99,14 @@ const { limit } = require('./database/menu/limit*/
 // Load Vcard Contact
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'VERSION:3.0\n' 
-            + 'FN:Nazwa🖤\n' // full name
+            + 'FN:dwipuspaaa\n' // full name
             + 'ORG:Owner Bot;\n' // the organization of the contact
-            + 'TEL;type=CELL;type=VOICE;waid=12542123926:+1 (254) 212-3926\n' // WhatsApp ID + phone number
+            + 'TEL;type=CELL;type=VOICE;waid=089610153337:+6289610153337\n' // WhatsApp ID + phone number
             + 'END:VCARD'
 prefix = '.'
 blocked = []
 limitawal = '20'
-cr = '*Verified*'
+cr = '*BOT INI SUDAH TERVERIFIKASI*'
 
 // Functions
 const getLevelingXp = (userId) => {
@@ -395,12 +395,12 @@ async function starts() {
                                         daftarB: `──「 BELUM REGISTER 」──\nHalo kak !\nKamu belum Register nih, register dulu yuk... \n\nCommand : ${prefix}register nama|umur\nContoh : ${prefix}register Nazwa|16`,
 				}
 			}
-    			const apakah = ['Ya','Tidak']
-        		const bisakah = ['Bisa','Tidak Bisa']
+    			const apakah = ['Iya anjing','Tidak tau bjir']
+        		const bisakah = ['Jangan tanya gw dong asu','Timdak bimsa 🗿']
 		        const kapankah = ['Hari Lagi','Minggu Lagi','Bulan Lagi','Tahun Lagi']
-			const botNumber = client.user.jid
-			const ownerNumber = ["12542123926@s.whatsapp.net"] // replace this with your number
-			const nomorOwner = [ownerNumber]
+                        const botNumber = client.user.jid
+		
+	                const nomorOwner = [wa.me/+6289610153337]
 			const isGroup = from.endsWith('@g.us')
 			const totalchat = await client.chats.all()
 			const sender = isGroup ? mek.participant : mek.key.remoteJid
@@ -416,14 +416,14 @@ async function starts() {
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
                         const isLevelingOn = isGroup ? _leveling.includes(groupId) : false
-                        const NomerOwner = '12542123926@s.whatsapp.net'
+                        const NomerOwner = '089610153337@s.whatsapp.net'
                         const isEventon = isGroup ? event.includes(from) : false
                         const isRegister = checkRegisteredUser(sender)
                         pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
 
                         // Options
-                        const botName = 'BOT_NAME'
-                        const ownerName = 'OWNER_NAME'
+                        const botName = 'DwiPuspaaBot'
+                        const ownerName = 'uzanncu'
                         const BarBarKey = 'YOUR_APIKEY'
 
 			const isUrl = (url) => {
@@ -438,15 +438,6 @@ async function starts() {
 			const mentions = (teks, memberr, id) => {
 				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
 			}
-                        const sendImage = (teks) => {
-		                client.sendMessage(from, teks, image, {quoted:mek})
-		        }
-		        const costum = (pesan, tipe, target, target2) => {
-			        client.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` }}})
-			}
-		        const sendPtt = (teks) => {
-		                client.sendMessage(from, audio, mp3, {quoted:mek})
-		        }
 
 	        //function leveling
             if (isGroup && isLevelingOn) {
@@ -535,11 +526,15 @@ async function starts() {
 			if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
                      // Load Commands
 			switch(command) {
-                                case 'help':
+				case 'help':
+				case 'menu':
+					client.sendMessage(from, help(prefix), text)
+					break
+                                /*case 'help':
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 			                const uangku = checkATMuser(sender)
-                                        await costum(help(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        client.sendMessage(from, help(pushname, prefix, botName, ownerName, reqXp, uangku), {quoted: mek})
                                         break
                                 case '18+menu':
                                         if (!isRegister) return reply(mess.only.daftarB)
@@ -633,7 +628,8 @@ async function starts() {
                                 case 'limitmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         client.sendMessage(from, limit(prefix, botName, ownerName), {quoted: mek})
-                                        break 
+                                        break
+                       --- MENUNYA LAGI DI TEST DULU KAK... TUNGGU YA... ---*/
                   case 'timer':
 				if (args[1]=="detik") {var timer = args[0]+"000"
 				} else if (args[1]=="menit") {var timer = args[0]+"0000"
